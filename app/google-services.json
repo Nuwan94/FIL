@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "319687534577",
+    "firebase_url": "https://filapp.firebaseio.com",
+    "project_id": "filapp",
+    "storage_bucket": "filapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319687534577:android:1c53c4e4f8def305",
+        "android_client_info": {
+          "package_name": "com.fil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319687534577-t34idcdpt47u796ha4sul913un6ch9fs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fil",
+            "certificate_hash": "aedb01441b0bad4f0070b81e234ee95c7238245c"
+          }
+        },
+        {
+          "client_id": "319687534577-mh66q37krln1uuanv02ql345s4qesnga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDETKL7GqUptNuCoo9FAnUosqtJ_gjsZvw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319687534577-mh66q37krln1uuanv02ql345s4qesnga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
