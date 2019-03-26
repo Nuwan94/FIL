@@ -18,7 +18,8 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Button button;
+    private Button signUpButton;
+    private Button signInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +47,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        button = findViewById(R.id.btnLoadSignUp);
-        button.setOnClickListener(new View.OnClickListener() {
+        signUpButton = findViewById(R.id.btnLoadSignUp);
+        signInButton = findViewById(R.id.btnLoadSignIn);
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openSignupActivity();
@@ -57,6 +60,22 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
+        });
+
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSignInActivity();
+            }
+
+            public void openSignInActivity() {
+                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+                startActivity(intent);
+            }
+
+
+
+
 
         });
 
