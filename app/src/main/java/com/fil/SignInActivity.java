@@ -45,10 +45,8 @@ public class SignInActivity extends AppCompatActivity {
 
         userInputEmail = findViewById(R.id.textInputEmail);
         userInputPassward = findViewById(R.id.textInputPassword);
-
+        btnSignUp = findViewById(R.id.buttonSignIn);
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
-
-
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
