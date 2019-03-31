@@ -33,6 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:entries="@array/sleeve_style_array"
                     android:padding="20dp" />
 
                 <Spinner
@@ -40,6 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:entries="@array/collar_size_array"
                     android:padding="20dp" />
 
                 <Spinner
@@ -47,6 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:entries="@array/material_array"
                     android:padding="20dp" />
 
                 <Spinner
@@ -54,6 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:entries="@array/color_array"
                     android:padding="20dp" />
 
                 <Spinner
@@ -61,6 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:entries="@array/collar_type_array_ladies"
                     android:padding="20dp" />
 
                 <Spinner
@@ -68,37 +73,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:entries="@array/tailor_array"
                     android:padding="20dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginBottom="50dp"
                     android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/buttonAddToCart"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginBottom="50dp"
+                        android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:background="@color/filColor"
+                        android:drawableLeft="@drawable/ic_shopping_cart"
+
+
                         android:padding="10dp"
                         android:text="Add to Cart"
-
-
                         android:textColor="@android:color/white" />
 
                     <Button
                         android:id="@+id/button5"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="30dp"
-                        android:layout_marginBottom="50dp"
+                        android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:background="@color/filColor"
+                        android:drawableLeft="@drawable/ic_monetization_on"
                         android:padding="10dp"
                         android:text="Buy it Now"
                         android:textColor="@android:color/white" />
@@ -106,18 +111,6 @@
 
 
             </LinearLayout>
-
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="147dp"
-                android:layout_marginEnd="147dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/filColor"
-                android:padding="10dp"
-                android:text="Cancel"
-                android:textColor="@android:color/white" />
 
         </LinearLayout>
     </ScrollView>
