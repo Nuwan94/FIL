@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/imageLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="273dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="14dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageViewproduct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_report_image" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="218dp"
+        android:layout_below="@+id/imageLinearLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="98dp"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/spinnerSleeveSize"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:entries="@array/sleeve_style_array"
+            />
+
+        <Spinner
+            android:id="@+id/spinnerCollarSize"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:entries="@array/collar_size_array"/>
+
+        <Spinner
+            android:id="@+id/spinnerMaterial"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:entries="@array/material_array"
+            />
+
+        <Spinner
+            android:id="@+id/spinnerColor"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:entries="@array/color_array"
+            />
+
+        <Spinner
+            android:id="@+id/spinnerCollarType"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:entries="@array/collar_type_array_ladies"
+            />
+
+        <Spinner
+            android:id="@+id/spinnerTailor"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:entries="@array/tailor_array"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonAddToCart"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="50dp"
+        android:background="@color/filColor"
+        android:padding="10dp"
+        android:text="Add to Cart"
+        android:textColor="@android:color/white"
+
+
+        />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="50dp"
+        android:background="@color/filColor"
+        android:text="Buy it Now"
+        android:textColor="@android:color/white"
+        android:padding="10dp"
+        />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="147dp"
+        android:padding="10dp"
+        android:layout_marginEnd="147dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/filColor"
+        android:text="Cancel"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>
