@@ -18,7 +18,7 @@
             <ImageView
                 android:id="@+id/imageViewproduct"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="269dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/side_nav_bar" />
 
@@ -31,79 +31,74 @@
                 <Spinner
                     android:id="@+id/spinnerSleeveSize"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="35dp"
                     android:entries="@array/sleeve_style_array"
-                    android:padding="20dp" />
+                    />
 
                 <Spinner
                     android:id="@+id/spinnerCollarSize"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:entries="@array/collar_size_array"
-                    android:padding="20dp" />
+                    android:layout_height="35dp"
+                    android:entries="@array/collar_size_array"/>
 
                 <Spinner
                     android:id="@+id/spinnerMaterial"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="35dp"
                     android:entries="@array/material_array"
-                    android:padding="20dp" />
+                    />
 
                 <Spinner
                     android:id="@+id/spinnerColor"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="35dp"
                     android:entries="@array/color_array"
-                    android:padding="20dp" />
+                    />
 
                 <Spinner
                     android:id="@+id/spinnerCollarType"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="35dp"
                     android:entries="@array/collar_type_array_ladies"
-                    android:padding="20dp" />
+                    />
 
                 <Spinner
                     android:id="@+id/spinnerTailor"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="35dp"
                     android:entries="@array/tailor_array"
-                    android:padding="20dp" />
+                    />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="50dp"
+                    android:layout_weight="1"
                     android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/buttonAddToCart"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginBottom="50dp"
                         android:layout_weight="1"
                         android:background="@color/filColor"
-                        android:drawableLeft="@drawable/ic_shopping_cart"
-
-
                         android:padding="10dp"
                         android:text="Add to Cart"
+
+
                         android:textColor="@android:color/white" />
 
                     <Button
                         android:id="@+id/button5"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="50dp"
                         android:layout_weight="1"
                         android:background="@color/filColor"
-                        android:drawableLeft="@drawable/ic_monetization_on"
                         android:padding="10dp"
                         android:text="Buy it Now"
                         android:textColor="@android:color/white" />
@@ -111,6 +106,18 @@
 
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="147dp"
+                android:layout_marginEnd="147dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/filColor"
+                android:padding="10dp"
+                android:text="Cancel"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
     </ScrollView>
