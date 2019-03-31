@@ -84,7 +84,7 @@
                     android:padding="10dp">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/txtInputEmail"
+                        android:id="@+id/txtSigninEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Email"
@@ -101,7 +101,7 @@
                     android:padding="10dp">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/txtInputPassword"
+                        android:id="@+id/txtISigninPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Password"

@@ -1,22 +1,27 @@
 package com.fil;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.fil.Common.Common;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private TextInputEditText txtInputEmail, txtInputPassword;
 
     private LinearLayout layoutLogin, layoutSignin, layoutSignup, layoutForgot;
 
@@ -43,22 +48,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setUpViews();
         setupClickAction();
 
-
-    }
-
-    private void setupClickAction() {
-
-        btnSignUpShow.setOnClickListener(this);
-        btnSignInShow.setOnClickListener(this);
-
-        btnSignIn.setOnClickListener(this);
-        btnSigninCancel.setOnClickListener(this);
-        btnSignInForgot.setOnClickListener(this);
-
-        btnSignUp.setOnClickListener(this);
-        btnSignUpCancel.setOnClickListener(this);
-
-
     }
 
     private void setUpViews() {
@@ -73,9 +62,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSignUp = findViewById(R.id.btnSignUp);
         btnSignUpCancel = findViewById(R.id.btnSignUpCancel);
 
-        txtInputEmail = findViewById(R.id.txtInputEmail);
-        txtInputPassword = findViewById(R.id.txtInputPassword);
-
         layoutLogin = findViewById(R.id.layoutLogin);
         layoutSignin = findViewById(R.id.layoutSignIn);
         layoutSignup = findViewById(R.id.layoutSignUp);
@@ -83,6 +69,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    private void setupClickAction() {
+
+        btnSignUpShow.setOnClickListener(this);
+        btnSignInShow.setOnClickListener(this);
+        btnSignIn.setOnClickListener(this);
+        btnSigninCancel.setOnClickListener(this);
+        btnSignInForgot.setOnClickListener(this);
+        btnSignUp.setOnClickListener(this);
+        btnSignUpCancel.setOnClickListener(this);
+
+    }
 
     private void showLayout(int layoutCode) {
         layoutLogin.setVisibility(View.GONE);
@@ -102,9 +99,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case FORGOT_LAYOUT:
                 layoutForgot.setVisibility(View.VISIBLE);
+                break;
             default:
                 Common.showToast(this, "Error!");
-
         }
     }
 
@@ -124,12 +121,49 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 showLayout(FORGOT_LAYOUT);
                 break;
 
+            case R.id.btnSignIn:
+                signInUser();
+                break;
+
+            case R.id.btnSignUp:
+                signUpUser();
+                break;
+
             case R.id.btnSignInCancel:
             case R.id.btnSignUpCancel:
             default:
                 showLayout(LOGIN_LAYOUT);
 
         }
+    }
+
+    private void signUpUser() {
+
+    }
+
+    private void signInUser() {
+
+        EditText editTextEmail = findViewById(R.id.txtSigninEmail);
+        EditText editTextPassword = findViewById(R.id.txtISigninPassword);
+
+        String email = editTextEmail.getText().toString();
+        String password = editTextPassword.getText().toString();
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            Common.showToast(getApplicationContext(),"Signin Success");
+                            startActivity(intent);
+                        } else {
+                            Common.showToast(getApplicationContext(),"Signin Failed");
+                        }
+                    }
+                });
     }
 
 //    private void loginUser (String email,String password) {
