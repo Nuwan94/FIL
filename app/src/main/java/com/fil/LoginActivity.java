@@ -11,8 +11,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import com.fil.Common.Common;
+import com.fil.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -138,18 +140,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void signUpUser() {
-        String firstName = ((EditText) findViewById(R.id.txtRegisterFirstName)).getText().toString();
-        String lastName = ((EditText) findViewById(R.id.txtRegisterLastName)).getText().toString();
-        String userName = ((EditText) findViewById(R.id.txtRegisterUsername)).getText().toString();
-        String contact = ((EditText) findViewById(R.id.txtRegisterContact)).getText().toString();
+        final String firstName = ((EditText) findViewById(R.id.txtRegisterFirstName)).getText().toString();
+        final String lastName = ((EditText) findViewById(R.id.txtRegisterLastName)).getText().toString();
+        final String userName = ((EditText) findViewById(R.id.txtRegisterUsername)).getText().toString();
+        final String contact = ((EditText) findViewById(R.id.txtRegisterContact)).getText().toString();
         String email = ((EditText) findViewById(R.id.txtRegisterEmail)).getText().toString();
-        String question = "";
-        String answer = ((EditText)findViewById(R.id.txtRegisterAnswer)).getText().toString();
+        final String question = ((Spinner)findViewById(R.id.spinnerSecurityQuestions)).getSelectedItem().toString();
+        final String answer = ((EditText)findViewById(R.id.txtRegisterAnswer)).getText().toString();
         String password = ((EditText) findViewById(R.id.txtRegisterPassword)).getText().toString();
         String confirmPassword = ((EditText) findViewById(R.id.txtRegisterConfirmPassword)).getText().toString();
 
 
-        if(TextUtils.isEmpty(firstName) || TextUtils.isEmpty(lastName) || TextUtils.isEmpty(userName) || TextUtils.isEmpty(contact) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword) || TextUtils.isEmpty(answer) || TextUtils.isEmpty(question)){
+        if(TextUtils.isEmpty(firstName) || TextUtils.isEmpty(lastName) || TextUtils.isEmpty(userName) || TextUtils.isEmpty(contact) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword) || TextUtils.isEmpty(question)){
             Common.showToast(this,"Please fill all the fields.");
             return;
         }
@@ -165,10 +167,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
-
-
+                            User dbUser = new User(firstName,lastName,userName,contact,question,answer,"buyer");
+                            Common.currentUser = dbUser;
+                            userDatabase.child(user.getUid()).setValue(dbUser);
                         } else {
-
+                            Common.showToast(getApplicationContext(),"Register Failed");
                         }
                     }
                 });
@@ -202,45 +205,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Common.showToast(getApplicationContext(),"Login Successfully");
         startActivity(intent);
     }
-
-//    private void loginUser (String email,String password) {
-//
-//        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if (task.isSuccessful()) {
-//
-//                    String currentUserID = mAuth.getCurrentUser().getUid();
-//                    String deviceTokenID = FirebaseInstanceId.getInstance().getToken();
-//
-//                    userDatabase.child(currentUserID).child("DeviceToken").setValue(deviceTokenID).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            Intent mainIntent = new Intent(LoginActivity.this,MainActivity.class);
-//                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                            startActivity(mainIntent);
-//                            Toast.makeText(LoginActivity.this, "Authentication succeded .",Toast.LENGTH_SHORT).show();
-//
-//                            finish();
-//                        }
-//                    });
-//
-//                    // Sign in success, update UI with the signed-in user's information
-//
-//                    FirebaseUser user = mAuth.getCurrentUser();
-//
-//                } else {
-//                    // If sign in fails, display a message to the user.
-//                    Log.w( "signInWithEmail:failure", task.getException());
-//                    Toast.makeText(LoginActivity.this, "Authentication failed. Please Recheck your Email and Password",Toast.LENGTH_SHORT).show();
-//
-//                }
-//
-//
-//            }
-//        });
-//    }
-//
-
 
 }
