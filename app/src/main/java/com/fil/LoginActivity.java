@@ -138,7 +138,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void signUpUser() {
+        String firstName = ((EditText) findViewById(R.id.txtRegisterFirstName)).getText().toString();
+        String lastName = ((EditText) findViewById(R.id.txtRegisterLastName)).getText().toString();
+        String userName = ((EditText) findViewById(R.id.txtRegisterUsername)).getText().toString();
+        String contact = ((EditText) findViewById(R.id.txtRegisterContact)).getText().toString();
+        String email = ((EditText) findViewById(R.id.txtRegisterEmail)).getText().toString();
+        String question = "";
+        String answer = ((EditText)findViewById(R.id.txtRegisterAnswer)).getText().toString();
+        String password = ((EditText) findViewById(R.id.txtRegisterPassword)).getText().toString();
+        String confirmPassword = ((EditText) findViewById(R.id.txtRegisterConfirmPassword)).getText().toString();
 
+
+        if(TextUtils.isEmpty(firstName) || TextUtils.isEmpty(lastName) || TextUtils.isEmpty(userName) || TextUtils.isEmpty(contact) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword) || TextUtils.isEmpty(answer) || TextUtils.isEmpty(question)){
+            Common.showToast(this,"Please fill all the fields.");
+            return;
+        }
+
+        if(!password.equals(confirmPassword)){
+            Common.showToast(this,"Password mismatch!");
+           return;
+        }
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+
+
+                        } else {
+
+                        }
+                    }
+                });
     }
 
     private void signInUser() {
@@ -155,15 +188,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            Common.showToast(getApplicationContext(),"Signin Success");
-                            startActivity(intent);
+
                         } else {
-                            Common.showToast(getApplicationContext(),"Signin Failed");
+                            Common.showToast(getApplicationContext(),"Sign In Failed");
                         }
                     }
                 });
+    }
+
+    private void transferToMainActivity(){
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Common.showToast(getApplicationContext(),"Login Successfully");
+        startActivity(intent);
     }
 
 //    private void loginUser (String email,String password) {
