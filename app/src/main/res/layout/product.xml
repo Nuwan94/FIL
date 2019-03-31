@@ -39,34 +39,46 @@
         android:orientation="vertical">
 
         <Spinner
-            android:id="@+id/spinnerSleeveSize"
+            android:id="@+id/spinnerSleeveStyle"
             android:layout_width="match_parent"
-            android:layout_height="35dp" />
+            android:layout_height="35dp"
+            android:entries="@array/sleeve_style_array"
+            />
 
         <Spinner
             android:id="@+id/spinnerCollarSize"
             android:layout_width="match_parent"
-            android:layout_height="35dp" />
+            android:layout_height="35dp"
+            android:entries="@array/collar_size_array"
+            />
 
         <Spinner
             android:id="@+id/spinnerMaterial"
             android:layout_width="match_parent"
-            android:layout_height="35dp" />
+            android:layout_height="35dp"
+            android:entries="@array/material_array"
+            />
 
         <Spinner
             android:id="@+id/spinnerColor"
             android:layout_width="match_parent"
-            android:layout_height="35dp" />
+            android:layout_height="35dp"
+            android:entries="@array/color_array"
+            />
 
         <Spinner
             android:id="@+id/spinnerCollarType"
             android:layout_width="match_parent"
-            android:layout_height="35dp" />
+            android:layout_height="35dp"
+            android:entries="@array/collar_type_array_ladies"
+            />
 
         <Spinner
             android:id="@+id/spinnerTailor"
             android:layout_width="match_parent"
-            android:layout_height="35dp" />
+            android:layout_height="35dp"
+            android:entries="@array/tailor_array"
+            />
 
     </LinearLayout>
 
