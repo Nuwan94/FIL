@@ -48,17 +48,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         signUpButton = findViewById(R.id.btnLoadSignUp);
         signInButton = findViewById(R.id.btnLoadSignIn);
 
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openSignupActivity();
-            }
-
-            void openSignupActivity() {
-                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
             void openSignInActivity() {
-                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
