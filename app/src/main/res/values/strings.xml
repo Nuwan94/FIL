@@ -9,7 +9,7 @@
     <string name="tag_line">LIFE INS\'T PERFECT, BUT YOUR OUTFIT CAN BE…</string>
 
     <string-array name="sleeve_style_array">
-        <item>Normal sleeve</item>
+        <item>- Select Sleeve Style -</item>
         <item>Raglan sleeves</item>
         <item>Man’s shirt sleeve with cuff</item>
         <item>Butterfly Sleeves</item>
@@ -21,9 +21,10 @@
     </string-array>
 
     <string-array name="collar_size_array">
-        <item>S | 37-38 cm | 15"</item>
-        <item>M |39-40 cm | 15 1/2" - 15 3/4"</item>
-        <item>L | 41-42 cm | 16" - 16 1/2"</item>
+        <item>- Select Collar Size</item>
+        <item>S | 37–38 cm | 15"</item>
+        <item>M |39–40 cm | 15 1/2" - 15 3/4"</item>
+        <item>L | 41–42 cm | 16" - 16 1/2"</item>
         <item>X | 43-44 cm | 17" – 17 1/2"</item>
         <item>XXL | 45-46 cm | 18" – 18 1/2" </item>
         <item>3XL | 47-48 cm | 19"</item>
@@ -32,6 +33,7 @@
     </string-array>
 
     <string-array name="material_array">
+        <item>- Select Material-</item>
         <item>cotton </item>
         <item>flax</item>
         <item>silk’s</item>
@@ -45,41 +47,46 @@
     </string-array>
 
     <string-array name="color_array">
-        <item>Normal</item>
-        <item>Raglan</item>
-        <item>Man’s</item>
-        <item>l</item>
-        <item>Of</item>
-        <item>Cuff </item>
-        <item>Cap</item>
-        <item>Kimono</item>
-        <item>Bracelet</item>
+        <item>- Select Color -</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Brown</item>
+        <item>Black</item>
+        <item>White</item>
+        <item>Beige </item>
+        <item>Navy</item>
+        <item>Grey</item>
+        <item>Red</item>
 
     </string-array>
 
-    <string-array name="collar_type_array_men">
-        <item>Normal</item>
-        <item>Raglan</item>
-        <item>Man’s</item>
-        <item>l</item>
-        <item>Of</item>
-        <item>Cuff </item>
-        <item>Cap</item>
-        <item>Kimono</item>
-        <item>Bracelet</item>
-
-    </string-array>
 
     <string-array name="collar_type_array_ladies">
-        <item>Straight Point Collar.</item>
-        <item>Spread Collar.</item>
-        <item>Button-Down Collar.</item>
-        <item>Cutaway Collar.</item>
-        <item>Of</item>
-        <item>Cuff </item>
-        <item>Cap</item>
-        <item>Kimono</item>
-        <item>Bracelet</item>
+        <item>- Select Collar Type -</item>
+        <item>Straight Point Collar</item>
+        <item>Spread Collar</item>
+        <item>Button-Down Collar</item>
+        <item>Cutaway Collar</item>
+        <item>Notched</item>
+        <item>Shawl Collars</item>
+        <item>Jabot Collars</item>
+        <item>Turtleneck Collars</item>
+        <item>- Select collar type -</item>
     </string-array>
+
+    <string-array name="tailor_array">
+        <item>- Select Tailor -</item>
+        <item>Hercules Tailors</item>
+        <item>KIITO BESPOKE</item>
+        <item>Rayman Custom Tailors </item>
+        <item>Roy Textile and Tailors</item>
+        <item>Imtiaz Designers</item>
+        <item>Dress Master Tailors </item>
+        <item>Dress Master Tailors (Pvt) Ltd</item>
+        <item>ABBA International</item>
+        <item>Wills Design Private Ltd</item>
+
+    </string-array>
+
 
 </resources>
