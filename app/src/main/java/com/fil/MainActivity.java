@@ -1,13 +1,8 @@
 package com.fil;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.fil.Common.Common;
@@ -59,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     if (dataSnapshot.child(mAuth.getCurrentUser().getUid()).exists()) {
                         Common.currentUser = dataSnapshot.child(mAuth.getCurrentUser().getUid()).getValue(User.class);
-                        usernameText.setText(String.format("Logged in as\n", Common.currentUser.getUserName()));
+                        usernameText.setText(String.format("Logged in as\n%s", Common.currentUser.getUserName()));
                     }
 
                 }
@@ -71,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
         }
 
-        displaySelectedScreen(R.layout.fragment_home);
+//        displaySelectedScreen(R.layout.fragment_home);
 
     }
 
@@ -84,27 +78,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onStart() {
         super.onStart();
     }
-
-    private void displaySelectedScreen(int itemId) {
-        Fragment fragment = null;
-
-        switch (itemId){
-            case R.layout.fragment_home:
-                fragment = new HomeFragment();
-                break;
-        }
-
-        if (fragment != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content, fragment);
-            ft.commit();
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-
-    }
-
+//
+//    private void displaySelectedScreen(int itemId) {
+//        Fragment fragment = null;
+//
+//        switch (itemId){
+//            case R.layout.fragment_home:
+//                fragment = new HomeFragment();
+//                break;
+//        }
+//
+//        if (fragment != null) {
+//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//            ft.replace(R.id.content, fragment);
+//            ft.commit();
+//        }
+//
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawer.closeDrawer(GravityCompat.START);
+//
+//    }
+//
 
     private void setUpViews() {
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -143,13 +137,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.actionSettings:
-                return true;
 
             case R.id.actionSignout:
                 FirebaseAuth.getInstance().signOut();
                 finish();
                 break;
+
+            case R.id.actionHomeCart:
+                Intent iCart = new Intent(this, CartActivity.class);
+                startActivity(iCart);
+                break;
+
+            case R.id.actionSettings:
+                Intent iSett = new Intent(this, SettingsActivity.class);
+                startActivity(iSett);
+                break;
+
             default:
                 break;
 
@@ -164,12 +167,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_view_home) {
+            return true;
 
         } else if (id == R.id.nav_view_favourite) {
+            Common.showToast(this,"Added to favourite function will be added soon.");
 
         } else if (id == R.id.nav_view_history) {
+            Common.showToast(this,"Password protected.");
 
         } else if (id == R.id.nav_view_settings) {
+            Intent iSett = new Intent(this, SettingsActivity.class);
+            startActivity(iSett);
 
         } else if (id == R.id.nav_view_share) {
 

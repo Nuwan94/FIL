@@ -245,6 +245,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String password = editTextPassword.getText().toString();
 
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+            Common.showToast(this,"Please fill all the fields.");
             return;
         }
 
