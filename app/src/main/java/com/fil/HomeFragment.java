@@ -118,7 +118,7 @@ class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         final MyHolder myHolder = (MyHolder) holder;
         final Product current = data.get(position);
         myHolder.name.setText(current.getName());
-        myHolder.price.setText(current.getPrice());
+        myHolder.price.setText("LKR " + current.getPrice());
         myHolder.description.setText(current.getDescription());
         Picasso.get().load(current.getImage()).into(myHolder.picture);
 

@@ -144,10 +144,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
 
         } else if (id == R.id.nav_view_favourite) {
-            Common.showToast(this,"Added to favourite function will be added soon.");
+            Common.showToast(this,"Favourite will be coming soon.");
 
         } else if (id == R.id.nav_view_history) {
-            Common.showToast(this,"Password protected.");
+            Intent iHist = new Intent(this, HistoryActivity.class);
+            startActivity(iHist);
 
         } else if (id == R.id.nav_view_settings) {
             Intent iSett = new Intent(this, SettingsActivity.class);

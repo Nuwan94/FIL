@@ -55,27 +55,27 @@ public class SingleProductViewActivity extends AppCompatActivity implements View
 
     @Override
     public void onClick(View v) {
+
+        String sleeveStyle = ((Spinner) findViewById(R.id.spinnerSleeveStyle)).getSelectedItem().toString();
+        String collarSize = ((Spinner) findViewById(R.id.spinnerCollarSize)).getSelectedItem().toString();
+        String material = ((Spinner) findViewById(R.id.spinnerMaterial)).getSelectedItem().toString();
+        String color = ((Spinner) findViewById(R.id.spinnerColor)).getSelectedItem().toString();
+        String collarType = ((Spinner) findViewById(R.id.spinnerCollarType)).getSelectedItem().toString();
+        String tailor = ((Spinner) findViewById(R.id.spinnerTailor)).getSelectedItem().toString();
+
+        CartItem cartItem = new CartItem(product, sleeveStyle, collarSize, material, color, collarType, tailor);
+
         switch (v.getId()) {
             case R.id.btnProductAddToCart:
                 choose.setVisibility(View.GONE);
-                added.setVisibility(View.VISIBLE);
-
-                String sleeveStyle = ((Spinner) findViewById(R.id.spinnerSleeveStyle)).getSelectedItem().toString();
-                String collarSize = ((Spinner) findViewById(R.id.spinnerCollarSize)).getSelectedItem().toString();
-                String material = ((Spinner) findViewById(R.id.spinnerMaterial)).getSelectedItem().toString();
-                String color = ((Spinner) findViewById(R.id.spinnerColor)).getSelectedItem().toString();
-                String collarType = ((Spinner) findViewById(R.id.spinnerCollarType)).getSelectedItem().toString();
-                String tailor = ((Spinner) findViewById(R.id.spinnerTailor)).getSelectedItem().toString();
-
-                CartItem cartItem = new CartItem(product, sleeveStyle, collarSize, material, color, collarType, tailor);
-
                 FireB.getCartReference().child(FirebaseAuth.getInstance().getUid()).push().setValue(cartItem);
-
+                added.setVisibility(View.VISIBLE);
                 break;
+
             case R.id.btnProductBuyNow:
-                choose.setVisibility(View.GONE);
-                Common.showToast(this, "Brought.");
-                finish();
+                FireB.getCartReference().child(FirebaseAuth.getInstance().getUid()).push().setValue(cartItem);
+                Intent iPurchase = new Intent(this,PurchaseActivity.class);
+                startActivity(iPurchase);
                 break;
             case R.id.btnProductGoToCart:
                 Intent iCart = new Intent(this, CartActivity.class);

@@ -20,7 +20,7 @@
             android:parentActivityName=".MainActivity"/>
 
         <activity android:name=".PurchaseActivity"
-            android:parentActivityName=".CartActivity"/>
+            android:parentActivityName=".MainActivity"/>
 
         <activity
             android:name=".SingleProductViewActivity"

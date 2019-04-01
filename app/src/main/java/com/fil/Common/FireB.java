@@ -10,6 +10,7 @@ public class FireB {
     private static DatabaseReference productDatabaseReference;
     private static DatabaseReference cartDatabaseReference;
     private static DatabaseReference historyDatabaseReference;
+    private static DatabaseReference ordersDatabaseReference;
 
     private static FirebaseDatabase getDatabase() {
         if (mDatabase == null) {
@@ -46,6 +47,13 @@ public class FireB {
             historyDatabaseReference = getDatabase().getReference("History");
         }
         return historyDatabaseReference;
+    }
+
+    public static DatabaseReference getOrderReference(){
+        if(ordersDatabaseReference == null){
+            ordersDatabaseReference = getDatabase().getReference("Orders");
+        }
+        return ordersDatabaseReference;
     }
 
 }

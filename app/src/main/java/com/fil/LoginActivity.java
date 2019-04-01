@@ -51,10 +51,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        setTitle("Login");
         mAuth = FirebaseAuth.getInstance();
 
         setUpViews();
+        showLayout(LOGIN_LAYOUT);
         setupClickAction();
 
     }
@@ -88,6 +89,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         signUpLayoutPassword.setPasswordVisibilityToggleEnabled(true);
         signInLayoutPassword.setPasswordVisibilityToggleEnabled(true);
         getSignUpLayoutConfirmPassword.setPasswordVisibilityToggleEnabled(true);
+
+
 
     }
 
@@ -129,6 +132,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 layoutPasswordProcess.setVisibility(View.VISIBLE);
                 break;
             case LAYOUT_FORGOT_SUCCESS:
+                layoutForgot.setVisibility(View.VISIBLE);
                 layoutPasswordSuccess.setVisibility(View.VISIBLE);
                 break;
             default:
@@ -177,10 +181,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void forgotPasswordSubmit() {
 
         String email = ((EditText)findViewById(R.id.txtForgotPasswordEmail)).getText().toString();
-        String answer = ((EditText)findViewById(R.id.txtForgotAnswer)).getText().toString();
-        String question = ((Spinner)findViewById(R.id.spinnerForgotPasswordSecurityQuestion)).getSelectedItem().toString();
+//        String answer = ((EditText)findViewById(R.id.txtForgotAnswer)).getText().toString();
+//        String question = ((Spinner)findViewById(R.id.spinnerForgotPasswordSecurityQuestion)).getSelectedItem().toString();
 
-        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(answer)){
+        if(TextUtils.isEmpty(email)){
             Common.showToast(this,"Please fill all the fields.");
             return;
         }
@@ -189,11 +193,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            showLayout(LAYOUT_FORGOT_SUCCESS);
-                        }
                     }
                 });
+        showLayout(LAYOUT_FORGOT_SUCCESS);
+
     }
 
     private void signUpUser() {

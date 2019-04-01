@@ -93,7 +93,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                progressDialog.dismiss();
             }
         });
 
@@ -104,8 +104,12 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
 
             case R.id.btnCartBuyNow:
-                Intent iBuyNow = new Intent(this, PurchaseActivity.class);
-                startActivity(iBuyNow);
+                if(data.size() > 0) {
+                    Intent iBuyNow = new Intent(this, PurchaseActivity.class);
+                    startActivity(iBuyNow);
+                }else {
+                    Common.showToast(this,"Added items to the Cart to purchase.");
+                }
                 break;
 
             case R.id.btnCartCancel:
