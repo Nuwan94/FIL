@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">FIL</string>
-    <string name="nav_header_subtitle">fillapp@gmail.com</string>
+    <string name="nav_header_subtitle">Logged In As : UserName</string>
     <string name="nav_header_desc">LIFE INS\'T PERFECT, BUT YOUR OUTFIT CAN BE…</string>
     <string name="action_settings">Settings</string>
     <string name="tag_line">LIFE INS\'T PERFECT, BUT YOUR OUTFIT CAN BE…</string>
@@ -94,5 +94,8 @@
         <item>Where did you born?</item>
         <item>What is your first pet name?</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

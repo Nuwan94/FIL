@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,15 +21,20 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private LinearLayout layoutLogin, layoutSignin, layoutSignup, layoutForgot;
+    private LinearLayout layoutLogin, layoutSignin, layoutSignup, layoutForgot, layoutPasswordProcess, layoutPasswordSuccess;
+
+    TextInputLayout signInLayoutPassword, signUpLayoutPassword, getSignUpLayoutConfirmPassword;
 
     private Button btnSigninCancel, btnSignUpCancel, btnSignInShow, btnSignUpShow,
-            btnSignIn, btnSignUp, btnSignInForgot;
+            btnSignIn, btnSignUp, btnSignInForgot, btnForgotPasswordCancel, btnForgotPasswordSubmit, btnForgotSuccessBack;
 
     private DatabaseReference userDatabase;
     private FirebaseAuth mAuth;
@@ -37,6 +43,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private final int SIGNIN_LAYOUT = 2;
     private final int SIGNUP_LAYOUT = 3;
     private final int FORGOT_LAYOUT = 4;
+    private final int LAYOUT_FORGOT_PROCESS = 5;
+    private final int LAYOUT_FORGOT_SUCCESS = 6;
 
 
     @Override
@@ -44,8 +52,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth = FirebaseAuth.getInstance();
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        mAuth = FirebaseAuth.getInstance();
 
         setUpViews();
         setupClickAction();
@@ -60,6 +68,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSignIn = findViewById(R.id.btnSignIn);
         btnSigninCancel = findViewById(R.id.btnSignInCancel);
         btnSignInForgot = findViewById(R.id.btnSigninForgot);
+        btnForgotPasswordCancel = findViewById(R.id.btnForgotPasswordCancel);
+        btnForgotPasswordSubmit = findViewById(R.id.btnForgotPasswordSubmit);
+        btnForgotSuccessBack = findViewById(R.id.btnForgotSuccessBack);
 
         btnSignUp = findViewById(R.id.btnSignUp);
         btnSignUpCancel = findViewById(R.id.btnSignUpCancel);
@@ -68,6 +79,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         layoutSignin = findViewById(R.id.layoutSignIn);
         layoutSignup = findViewById(R.id.layoutSignUp);
         layoutForgot = findViewById(R.id.layoutForgotPassword);
+        layoutPasswordProcess = findViewById(R.id.layoutPasswordResetProcess);
+        layoutPasswordSuccess = findViewById(R.id.layoutPasswordResetSuccess);
+
+        signInLayoutPassword = findViewById(R.id.tilSigninPassword);
+        signUpLayoutPassword = findViewById(R.id.tilRegisterPassword);
+        getSignUpLayoutConfirmPassword = findViewById(R.id.tilRegisterConfirmPassword);
+
+        signUpLayoutPassword.setPasswordVisibilityToggleEnabled(true);
+        signInLayoutPassword.setPasswordVisibilityToggleEnabled(true);
+        getSignUpLayoutConfirmPassword.setPasswordVisibilityToggleEnabled(true);
 
     }
 
@@ -80,6 +101,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSignInForgot.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
         btnSignUpCancel.setOnClickListener(this);
+        btnForgotPasswordSubmit.setOnClickListener(this);
+        btnForgotPasswordCancel.setOnClickListener(this);
+        btnForgotSuccessBack.setOnClickListener(this);
 
     }
 
@@ -88,6 +112,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         layoutSignin.setVisibility(View.GONE);
         layoutSignup.setVisibility(View.GONE);
         layoutForgot.setVisibility(View.GONE);
+        layoutPasswordSuccess.setVisibility(View.GONE);
+        layoutPasswordProcess.setVisibility(View.GONE);
 
         switch (layoutCode) {
             case LOGIN_LAYOUT:
@@ -101,6 +127,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case FORGOT_LAYOUT:
                 layoutForgot.setVisibility(View.VISIBLE);
+                layoutPasswordProcess.setVisibility(View.VISIBLE);
+                break;
+            case LAYOUT_FORGOT_SUCCESS:
+                layoutPasswordSuccess.setVisibility(View.VISIBLE);
                 break;
             default:
                 Common.showToast(this, "Error!");
@@ -131,12 +161,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 signUpUser();
                 break;
 
+            case R.id.btnForgotPasswordSubmit:
+                forgotPasswordSubmit();
+                break;
+
             case R.id.btnSignInCancel:
             case R.id.btnSignUpCancel:
+            case R.id.btnForgotPasswordCancel:
+            case R.id.btnForgotSuccessBack:
             default:
                 showLayout(LOGIN_LAYOUT);
 
         }
+    }
+
+    private void forgotPasswordSubmit() {
+
+        String email = ((EditText)findViewById(R.id.txtForgotPasswordEmail)).getText().toString();
+        String answer = ((EditText)findViewById(R.id.txtForgotAnswer)).getText().toString();
+        String question = ((Spinner)findViewById(R.id.spinnerForgotPasswordSecurityQuestion)).getSelectedItem().toString();
+
+        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(answer)){
+            Common.showToast(this,"Please fill all the fields.");
+            return;
+        }
+
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            showLayout(LAYOUT_FORGOT_SUCCESS);
+                        }
+                    }
+                });
     }
 
     private void signUpUser() {
@@ -170,6 +228,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             User dbUser = new User(firstName,lastName,userName,contact,question,answer,"buyer");
                             Common.currentUser = dbUser;
                             userDatabase.child(user.getUid()).setValue(dbUser);
+                            transferToMainActivity();
                         } else {
                             Common.showToast(getApplicationContext(),"Register Failed");
                         }
@@ -185,13 +244,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
 
+        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+            return;
+        }
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-
+                            transferToMainActivity();
                         } else {
                             Common.showToast(getApplicationContext(),"Sign In Failed");
                         }

@@ -42,13 +42,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="50dp"
-                android:visibility="gone">
+                android:padding="50dp">
 
                 <Button
                     android:id="@+id/btnSignInShow"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/filColor"
                     android:text="Signin"
@@ -59,7 +58,7 @@
                 <Button
                     android:id="@+id/btnSignUpShow"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:layout_weight="1"
                     android:background="@color/filColor"
@@ -90,11 +89,13 @@
                         android:layout_height="wrap_content"
                         android:hint="Email"
                         android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:singleLine="true" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilSigninPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -156,7 +157,8 @@
                 android:id="@+id/layoutSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/textInputL"
@@ -172,6 +174,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="First Name"
+                        android:imeOptions="actionNext"
                         android:inputType="textPersonName"
                         android:singleLine="true" />
                 </android.support.design.widget.TextInputLayout>
@@ -185,7 +188,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Last Name"
-                        android:inputType="textPersonName" />
+                        android:imeOptions="actionNext"
+                        android:inputType="textPersonName"
+                        android:singleLine="true" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -197,7 +202,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="User Name"
-                        android:inputType="text" />
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:singleLine="true" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -212,7 +219,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Contact Number"
-                        android:inputType="phone" />
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:singleLine="true" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -224,7 +233,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Email"
-                        android:inputType="textEmailAddress" />
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true" />
                 </android.support.design.widget.TextInputLayout>
 
 
@@ -247,10 +258,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Answer"
-                        android:inputType="textShortMessage" />
+                        android:imeOptions="actionNext"
+                        android:inputType="textShortMessage"
+                        android:singleLine="true" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilRegisterPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -259,10 +273,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Password"
-                        android:inputType="textPassword" />
+                        android:imeOptions="actionNext"
+                        android:inputType="textPassword"
+                        android:singleLine="true" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilRegisterConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -271,7 +288,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Re Enter Password"
-                        android:inputType="textPassword" />
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:singleLine="true" />
                 </android.support.design.widget.TextInputLayout>
 
                 <LinearLayout
@@ -310,7 +329,125 @@
                 android:id="@+id/layoutForgotPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:id="@+id/layoutPasswordResetProcess"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/txtForgotPasswordEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Email"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
+                            android:singleLine="true" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <Spinner
+                        android:id="@+id/spinnerForgotPasswordSecurityQuestion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:dropDownWidth="match_parent"
+                        android:entries="@array/security_questions"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:spinnerMode="dialog" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/txtForgotAnswer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Answer"
+                            android:imeOptions="actionDone"
+                            android:inputType="textShortMessage"
+                            android:singleLine="true" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:weightSum="2">
+
+                        <Button
+                            android:id="@+id/btnForgotPasswordCancel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@color/filColor"
+                            android:text="Cancel"
+                            android:textColor="@android:color/white" />
+
+                        <Button
+                            android:id="@+id/btnForgotPasswordSubmit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@color/filColor"
+                            android:text="Submit"
+                            android:textColor="@android:color/white" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutPasswordResetSuccess"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="30dp"
+                        app:srcCompat="@drawable/ic_check_black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Password Reset Mail Sent! Check your inbox."
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btnForgotSuccessBack"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:background="@color/filColor"
+                        android:text="Back to Login"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
