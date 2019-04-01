@@ -24,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
     private NavigationView navigationView;
 
     @Override

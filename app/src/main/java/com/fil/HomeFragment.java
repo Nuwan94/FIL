@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fil.Common.FireB;
 import com.fil.Model.Product;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -61,8 +62,7 @@ public class HomeFragment extends Fragment {
 
         progressDialog = ProgressDialog.show(v.getContext(), "","Loading...", true);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        FireB.getProductReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 data.clear();
@@ -149,7 +149,7 @@ class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         MyHolder(final View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.txtCartItemName);
+            name = itemView.findViewById(R.id.txtSingleItemName);
             price = itemView.findViewById(R.id.txtSingleItemPrice);
             description = itemView.findViewById(R.id.txtSingleItemDescription);
             picture = itemView.findViewById(R.id.imgSingleItemPhoto);
