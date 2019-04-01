@@ -9,7 +9,6 @@
     <string name="tag_line">LIFE INS\'T PERFECT, BUT YOUR OUTFIT CAN BE…</string>
 
     <string-array name="sleeve_style_array">
-        <item>- Select Sleeve Style -</item>
         <item>Raglan sleeves</item>
         <item>Man’s shirt sleeve with cuff</item>
         <item>Butterfly Sleeves</item>
@@ -21,7 +20,6 @@
     </string-array>
 
     <string-array name="collar_size_array">
-        <item>- Select Collar Size</item>
         <item>S | 37–38 cm | 15"</item>
         <item>M |39–40 cm | 15 1/2" - 15 3/4"</item>
         <item>L | 41–42 cm | 16" - 16 1/2"</item>
@@ -33,7 +31,6 @@
     </string-array>
 
     <string-array name="material_array">
-        <item>- Select Material-</item>
         <item>cotton </item>
         <item>flax</item>
         <item>silk’s</item>
@@ -47,7 +44,6 @@
     </string-array>
 
     <string-array name="color_array">
-        <item>- Select Color -</item>
         <item>Green</item>
         <item>Blue</item>
         <item>Brown</item>
@@ -62,7 +58,6 @@
 
 
     <string-array name="collar_type_array_ladies">
-        <item>- Select Collar Type -</item>
         <item>Straight Point Collar</item>
         <item>Spread Collar</item>
         <item>Button-Down Collar</item>
@@ -75,7 +70,6 @@
     </string-array>
 
     <string-array name="tailor_array">
-        <item>- Select Tailor -</item>
         <item>Hercules Tailors</item>
         <item>KIITO BESPOKE</item>
         <item>Rayman Custom Tailors </item>

@@ -13,23 +13,24 @@
         android:padding="5dp">
 
         <ImageView
-            android:id="@+id/imgSingleItemPhoto"
+            android:id="@+id/imgCartItemPhoto"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="left"
             android:scaleType="fitCenter" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:padding="10dp">
 
             <TextView
                 android:id="@+id/txtCartItemName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@+id/imgCartItemDelete"
                 android:padding="5dp"
                 android:text="Item Type"
                 android:textColor="@color/colorAccent"
@@ -37,26 +38,27 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtSingleItemPrice"
+                android:id="@+id/txtCartItemPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_below="@+id/txtCartItemName"
+                android:layout_alignParentBottom="false"
+                android:layout_marginBottom="10dp"
                 android:drawableLeft="@drawable/ic_price_tag"
                 android:padding="5dp"
                 android:text="Rs.1000"
                 android:textAlignment="textStart"
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/txtSingleItemDescription"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/imgCartItemDelete"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_weight="1"
-                android:padding="5dp"
-                android:text="Description"
-                android:textSize="14sp" />
+                app:srcCompat="@drawable/ic_delete_black" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -1,10 +1,13 @@
 package com.fil.Model;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
     private String price;
     private String name;
     private String description;
+    private String image;
 //    private String sleeveStyle;
 //    private String collarSize;
 //    private String collarType;
@@ -14,10 +17,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(String price, String name, String description){
+    public Product(String price, String name, String description, String image){
         this.price = price;
         this.name = name;
         this.description = description;
+        this.image = image;
     }
 
 //    public Product(float price, String name, String sleeveStyle, String collarSize, String collarType, String material, String color) {
@@ -53,6 +57,15 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
 
     //    public String getSleeveStyle() {
 //        return sleeveStyle;

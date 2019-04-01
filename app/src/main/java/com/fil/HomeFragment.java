@@ -3,9 +3,11 @@ package com.fil;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,14 +16,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fil.Common.Common;
 import com.fil.Model.Product;
-import com.firebase.client.Firebase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,6 +120,20 @@ class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         myHolder.name.setText(current.getName());
         myHolder.price.setText(current.getPrice());
         myHolder.description.setText(current.getDescription());
+        Picasso.get().load(current.getImage()).into(myHolder.picture);
+
+
+        View.OnClickListener productView = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, SingleProductViewActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                intent.putExtra("product", current);
+                mContext.startActivity(intent);
+            }
+        };
+
+        myHolder.cv.setOnClickListener(productView);
 
     }
 
@@ -130,13 +145,15 @@ class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     class MyHolder extends RecyclerView.ViewHolder {
         TextView name, price, description;
         ImageView picture;
+        CardView cv;
 
         MyHolder(final View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.txtSingleItemName);
+            name = itemView.findViewById(R.id.txtCartItemName);
             price = itemView.findViewById(R.id.txtSingleItemPrice);
             description = itemView.findViewById(R.id.txtSingleItemDescription);
             picture = itemView.findViewById(R.id.imgSingleItemPhoto);
+            cv = itemView.findViewById(R.id.cvSingleItem);
         }
 
     }

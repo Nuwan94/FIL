@@ -15,12 +15,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.fil.Common.Common;
+import com.fil.Common.FireB;
 import com.fil.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DatabaseReference userDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         setUpViews();
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
             finish();
         } else {
-            userDatabase.addValueEventListener(new ValueEventListener() {
+            FireB.getUserReference().addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -65,8 +63,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
         }
 
-//        displaySelectedScreen(R.layout.fragment_home);
-
     }
 
     @Override
@@ -78,27 +74,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onStart() {
         super.onStart();
     }
-//
-//    private void displaySelectedScreen(int itemId) {
-//        Fragment fragment = null;
-//
-//        switch (itemId){
-//            case R.layout.fragment_home:
-//                fragment = new HomeFragment();
-//                break;
-//        }
-//
-//        if (fragment != null) {
-//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//            ft.replace(R.id.content, fragment);
-//            ft.commit();
-//        }
-//
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        drawer.closeDrawer(GravityCompat.START);
-//
-//    }
-//
 
     private void setUpViews() {
         Toolbar toolbar = findViewById(R.id.toolbar);

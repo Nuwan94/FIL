@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.fil.Common.Common;
+import com.fil.Common.FireB;
 import com.fil.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,7 +37,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button btnSigninCancel, btnSignUpCancel, btnSignInShow, btnSignUpShow,
             btnSignIn, btnSignUp, btnSignInForgot, btnForgotPasswordCancel, btnForgotPasswordSubmit, btnForgotSuccessBack;
 
-    private DatabaseReference userDatabase;
     private FirebaseAuth mAuth;
 
     private final int LOGIN_LAYOUT = 1;
@@ -52,7 +52,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        userDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         mAuth = FirebaseAuth.getInstance();
 
         setUpViews();
@@ -227,7 +226,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             FirebaseUser user = mAuth.getCurrentUser();
                             User dbUser = new User(firstName,lastName,userName,contact,question,answer,"buyer");
                             Common.currentUser = dbUser;
-                            userDatabase.child(user.getUid()).setValue(dbUser);
+                            FireB.getUserReference().child(user.getUid()).setValue(dbUser);
                             transferToMainActivity();
                         } else {
                             Common.showToast(getApplicationContext(),"Register Failed");
