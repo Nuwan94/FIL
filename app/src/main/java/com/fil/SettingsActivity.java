@@ -142,16 +142,14 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                                 public void onComplete(@NonNull Task<Void> task) {
 
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                    user.updatePassword(newPassword)
-                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if (task.isSuccessful()) {
-                                                        Common.showToast(getApplicationContext(), "Password changed.");
-
-                                                    }
-                                                }
-                                            });
+                                    user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Common.showToast(getApplicationContext(), "Password changed.");
+                                            }
+                                        }
+                                    });
                                 }
                             });
 
